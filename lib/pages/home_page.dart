@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:westgate_pest_control_website_/pages/about_us_page.dart';
+import 'package:westgate_pest_control_website_/pages/gallery_page.dart';
 import 'package:westgate_pest_control_website_/pages/services_page.dart';
 import 'package:westgate_pest_control_website_/pages/why_us_page.dart';
 
@@ -248,6 +249,9 @@ class _HomePageState extends State<HomePage> {
           ),
           SliverToBoxAdapter(
             child: WhyUsPage(),
+          ),
+          SliverToBoxAdapter(
+            child: GalleryPage(),
           ),
         ],
       ),
