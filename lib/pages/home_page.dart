@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:westgate_pest_control_website_/pages/about_us_page.dart';
+import 'package:westgate_pest_control_website_/pages/services_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -239,6 +240,12 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
           const SliverToBoxAdapter(
+            child: AboutUsPage(),
+          ),
+           SliverToBoxAdapter(
+            child: ServicesPage(),
+          ),
+           SliverToBoxAdapter(
             child: AboutUsPage(),
           ),
         ],
