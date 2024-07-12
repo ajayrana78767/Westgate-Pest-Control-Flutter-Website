@@ -2,6 +2,38 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class HoverableListItem extends StatefulWidget {
+   void _openCustomDrawer(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      backgroundColor: Colors.transparent,
+      builder: (BuildContext context) {
+        return Container(
+          color: Colors.transparent,
+          height: 500,
+          child: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                _buildListItem(context, 'HOME'),
+                _buildListItem(context, 'ABOUT'),
+                _buildListItem(context, 'SERVICES'),
+                _buildListItem(context, 'WHY US'),
+                _buildListItem(context, 'GALLERY'),
+                _buildListItem(context, 'FAQ'),
+                _buildListItem(context, 'CONTACT'),
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
+
+  Widget _buildListItem(BuildContext context, String title) {
+    return HoverableListItem(title: title);
+  }
+
   final String title;
 
   const HoverableListItem({Key? key, required this.title}) : super(key: key);
