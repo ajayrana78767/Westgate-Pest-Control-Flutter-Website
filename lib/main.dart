@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:westgate_pest_control_website_/pages/home_page.dart';
+import 'package:westgate_pest_control_website_/pages/website_page.dart';
 import 'package:westgate_pest_control_website_/themes/light_mode.dart';
 
 void main() {
@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: lightMode,
-      home: const HomePage(),
+      home: const WebsitePage(),
     );
   }
 }
