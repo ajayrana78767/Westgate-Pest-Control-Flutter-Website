@@ -289,6 +289,7 @@ import 'package:westgate_pest_control_website_/pages/gallery_page.dart';
 import 'package:westgate_pest_control_website_/pages/home_page.dart';
 import 'package:westgate_pest_control_website_/pages/services_page.dart';
 import 'package:westgate_pest_control_website_/pages/why_us_page.dart';
+import 'package:westgate_pest_control_website_/widgets/haverable_list.dart';
 
 class WebsitePage extends StatefulWidget {
   const WebsitePage({Key? key}) : super(key: key);
@@ -298,55 +299,96 @@ class WebsitePage extends StatefulWidget {
 }
 
 class _WebsitePageState extends State<WebsitePage> {
+  void _openCustomDrawer(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      backgroundColor: Colors.transparent,
+      builder: (BuildContext context) {
+        return Container(
+          color: Colors.transparent,
+          height: 500,
+          child: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                _buildListItem(context, 'HOME'),
+                _buildListItem(context, 'ABOUT'),
+                _buildListItem(context, 'SERVICES'),
+                _buildListItem(context, 'WHY US'),
+                _buildListItem(context, 'GALLERY'),
+                _buildListItem(context, 'FAQ'),
+                _buildListItem(context, 'CONTACT'),
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
+
+  Widget _buildListItem(BuildContext context, String title) {
+    return HoverableListItem(title: title);
+  }
+
   @override
   Widget build(BuildContext context) {
     double expandedHeight =
         MediaQuery.of(context).size.width < 600 ? 70.0 : 120.0;
     double logoSize = MediaQuery.of(context).size.width < 600 ? 60.0 : 120.0;
     return Scaffold(
-      // appBar: AppBar(
-      //   automaticallyImplyLeading: false,
+      // drawer: SideDrawer(
+      //   onItemTap: (title) {
+      //     // Handle navigation based on the selected item title
+      //     switch (title) {
+      //       case 'home':
+      //         // Navigator.push(
+      //         //   context,
+      //         //   MaterialPageRoute(builder: (context) => HomePage()),
+      //         // );
+      //         break;
+      //       case 'about':
+      //         // Navigator.push(
+      //         //   context,
+      //         //   MaterialPageRoute(builder: (context) => AboutUsPage()),
+      //         // );
+      //         break;
+      //       case 'services':
+      //         // Navigator.push(
+      //         //   context,
+      //         //   MaterialPageRoute(builder: (context) => ServicesPage()),
+      //         // );
+      //         break;
+      //       case 'why us':
+      //         // Navigator.push(
+      //         //   context,
+      //         //   MaterialPageRoute(builder: (context) => WhyUsPage()),
+      //         // );
+      //         break;
+      //       case 'gallery':
+      //         // Navigator.push(
+      //         //   context,
+      //         //   MaterialPageRoute(builder: (context) => GalleryPage()),
+      //         // );
+      //         break;
+      //       case 'faq':
+      //         // Navigator.push(
+      //         //   context,
+      //         //   MaterialPageRoute(builder: (context) => FaqPage()),
+      //         // );
+      //         break;
+      //       case 'contact':
+      //         // Navigator.push(
+      //         //   context,
+      //         //   MaterialPageRoute(builder: (context) => ContactUsPage()),
+      //         // );
+      //         break;
+      //       default:
+      //         // Handle default case or any other actions
+      //         break;
+      //     }
+      //   },
       // ),
-      // drawer: MediaQuery.of(context).size.width < 600
-      //     ? Drawer(
-      // child: ListView(
-      //   padding: EdgeInsets.zero,
-      //   children: [
-      //     DrawerHeader(
-      //       decoration: BoxDecoration(
-      //         color: Theme.of(context).colorScheme.onPrimary,
-      //       ),
-      //       child: Column(
-      //         crossAxisAlignment: CrossAxisAlignment.start,
-      //         children: [
-      //           SizedBox(
-      //             height: logoSize,
-      //             width: logoSize,
-      //             child: Image.asset('assets/images/Logo.png'),
-      //           ),
-      //           SizedBox(height: 10),
-      //           Text(
-      //             'Westgate Pest Control',
-      //             style: GoogleFonts.plusJakartaSans(
-      //               fontSize: 20,
-      //               fontWeight: FontWeight.bold,
-      //               color: Colors.white,
-      //             ),
-      //           ),
-      //         ],
-      //       ),
-      //     ),
-      //     buildNavLink('HOME'),
-      //     buildNavLink('ABOUT'),
-      //     buildNavLink('SERVICES'),
-      //     buildNavLink('WHY US'),
-      //     buildNavLink('GALLERY'),
-      //     buildNavLink('FAQ'),
-      //     buildNavLink('CONTACT'),
-      //   ],
-      // ),
-      //   )
-      // : null, // No drawer on larger screens
       body: CustomScrollView(
         slivers: [
           SliverToBoxAdapter(
@@ -455,92 +497,6 @@ class _WebsitePageState extends State<WebsitePage> {
                     ),
             ),
           ),
-          // SliverAppBar(
-          //   backgroundColor: Theme.of(context).colorScheme.onPrimary,
-          //   pinned: true,
-          //   expandedHeight: 10.0, // Adjust the height as needed
-          //   flexibleSpace: FlexibleSpaceBar(
-          //     titlePadding: const EdgeInsets.symmetric(horizontal: 20),
-          //     title: LayoutBuilder(
-          //       builder: (context, constraints) {
-          //         if (constraints.maxWidth < 600) {
-          //           return Column(
-          //             children: [
-          //               SizedBox(
-          //                 height: 80,
-          //                 child: Row(
-          //                   crossAxisAlignment: CrossAxisAlignment.center,
-          //                   children: [
-          //                     SizedBox(
-          //                       height: 120,
-          //                       width: 120,
-          //                       child: Image.asset('assets/images/Logo.png'),
-          //                     ),
-          //                     const SizedBox(width: 20),
-          //                     Text(
-          //                       'Westgate Pest Control',
-          //                       style: GoogleFonts.plusJakartaSans(
-          //                         fontSize: 24,
-          //                         fontWeight: FontWeight.bold,
-          //                         color:
-          //                             Theme.of(context).colorScheme.onSecondary,
-          //                       ),
-          //                     ),
-          //                     const Spacer(),
-          //                     IconButton(
-          //                       onPressed: () {
-          //                         const Drawer();
-          //                       },
-          //                       icon: const Icon(Icons.menu),
-          //                       color: Theme.of(context).colorScheme.primary,
-          //                     )
-          //                   ],
-          //                 ),
-          //               ),
-          //               const Divider(height: 1, color: Colors.grey),
-          //               buildNavLink('HOME'),
-          //               buildNavLink('ABOUT'),
-          //               buildNavLink('SERVICES'),
-          //               buildNavLink('WHY US'),
-          //               buildNavLink('GALLERY'),
-          //               buildNavLink('FAQ'),
-          //               buildNavLink('CONTACT'),
-          //             ],
-          //           );
-          //         } else {
-          //           return Row(
-          //             crossAxisAlignment: CrossAxisAlignment.center,
-          //             children: [
-          //               SizedBox(
-          //                 height: 120,
-          //                 width: 120,
-          //                 child: Image.asset('assets/images/Logo.png'),
-          //               ),
-          //               const SizedBox(width: 20),
-          //               Text(
-          //                 'Westgate Pest Control',
-          //                 style: GoogleFonts.plusJakartaSans(
-          //                   fontSize: 24,
-          //                   fontWeight: FontWeight.bold,
-          //                   color: Theme.of(context).colorScheme.onSecondary,
-          //                 ),
-          //               ),
-          //               const Spacer(),
-          //               buildNavLink('HOME'),
-          //               buildNavLink('ABOUT'),
-          //               buildNavLink('SERVICES'),
-          //               buildNavLink('WHY US'),
-          //               buildNavLink('GALLERY'),
-          //               buildNavLink('FAQ'),
-          //               buildNavLink('CONTACT'),
-          //             ],
-          //           );
-          //         }
-          //       },
-          //     ),
-          //   ),
-          // ),
-
           SliverAppBar(
             backgroundColor: Theme.of(context).colorScheme.onPrimary,
             pinned: true,
@@ -580,73 +536,9 @@ class _WebsitePageState extends State<WebsitePage> {
                       if (MediaQuery.of(context).size.width < 1500)
                         InkWell(
                           onTap: () {
-                            showModalBottomSheet(
-                              context: context,
-                              builder: (context) => Container(
-                                height: 200,
-                                child: ListView(
-                                  padding: EdgeInsets.zero,
-                                  children: [
-                                    ListTile(
-                                      title: const Text('HOME'),
-                                      onTap: () {
-                                        // Add your navigation logic here
-                                        Navigator.pop(
-                                            context); // Close the bottom sheet
-                                      },
-                                    ),
-                                    ListTile(
-                                      title: const Text('ABOUT'),
-                                      onTap: () {
-                                        // Add your navigation logic here
-                                        Navigator.pop(
-                                            context); // Close the bottom sheet
-                                      },
-                                    ),
-                                    ListTile(
-                                      title: const Text('SERVICES'),
-                                      onTap: () {
-                                        // Add your navigation logic here
-                                        Navigator.pop(
-                                            context); // Close the bottom sheet
-                                      },
-                                    ),
-                                    ListTile(
-                                      title: const Text('WHY US'),
-                                      onTap: () {
-                                        // Add your navigation logic here
-                                        Navigator.pop(
-                                            context); // Close the bottom sheet
-                                      },
-                                    ),
-                                    ListTile(
-                                      title: const Text('GALLERY'),
-                                      onTap: () {
-                                        // Add your navigation logic here
-                                        Navigator.pop(
-                                            context); // Close the bottom sheet
-                                      },
-                                    ),
-                                    ListTile(
-                                      title: const Text('FAQ'),
-                                      onTap: () {
-                                        // Add your navigation logic here
-                                        Navigator.pop(
-                                            context); // Close the bottom sheet
-                                      },
-                                    ),
-                                    ListTile(
-                                      title: const Text('CONTACT'),
-                                      onTap: () {
-                                        // Add your navigation logic here
-                                        Navigator.pop(
-                                            context); // Close the bottom sheet
-                                      },
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            );
+                            // Scaffold.of(context)
+                            //     .openDrawer(); // Open the drawer
+                            _openCustomDrawer(context);
                           },
                           child: Container(
                               // padding: EdgeInsets.all(),
