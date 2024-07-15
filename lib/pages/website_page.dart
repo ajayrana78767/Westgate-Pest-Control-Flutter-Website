@@ -310,6 +310,16 @@ class _WebsitePageState extends State<WebsitePage> {
   final GlobalKey faqKey = GlobalKey();
   final GlobalKey contactKey = GlobalKey();
 
+  // Map to keep track of which button is clicked
+  final Map<String, bool> _clickedButtons = {
+    'HOME': false,
+    'ABOUT': false,
+    'SERVICES': false,
+    'WHY US': false,
+    'GALLERY': false,
+    'FAQ': false,
+    'CONTACT': false,
+  };
   void _scrollToSection(GlobalKey key) {
     final context = key.currentContext;
     if (context != null) {
@@ -354,7 +364,7 @@ class _WebsitePageState extends State<WebsitePage> {
       onTap: () {
         Navigator.pop(context); // Close the bottom sheet
         // Delay the scroll to ensure bottom sheet is closed first
-        Future.delayed(Duration(milliseconds: 100), () {
+        Future.delayed(Duration(milliseconds: 300), () {
           _scrollToSection(key);
         });
       },
@@ -535,13 +545,13 @@ class _WebsitePageState extends State<WebsitePage> {
                       else
                         Row(
                           children: [
-                            _buildNavButton('HOME', homeKey),
-                            _buildNavButton('ABOUT', aboutKey),
-                            _buildNavButton('SERVICES', servicesKey),
-                            _buildNavButton('WHY US', whyUsKey),
-                            _buildNavButton('GALLERY', galleryKey),
-                            _buildNavButton('FAQ', faqKey),
-                            _buildNavButton('CONTACT', contactKey),
+                            _buildNavButton('HOME', homeKey, false),
+                            _buildNavButton('ABOUT', aboutKey, false),
+                            _buildNavButton('SERVICES', servicesKey, false),
+                            _buildNavButton('WHY US', whyUsKey, false),
+                            _buildNavButton('GALLERY', galleryKey, false),
+                            _buildNavButton('FAQ', faqKey, false),
+                            _buildNavButton('CONTACT', contactKey, false),
                           ],
                         ),
                     ],
@@ -583,17 +593,24 @@ class _WebsitePageState extends State<WebsitePage> {
     );
   }
 
-  Widget _buildNavButton(String title, GlobalKey key) {
+  Widget _buildNavButton(String title, GlobalKey key, bool isClicked) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 10),
       child: GestureDetector(
         onTap: () {
+          setState(() {
+            // Reset all buttons to false and set the clicked button to true
+            _clickedButtons.updateAll((key, value) => false);
+            _clickedButtons[title] = true;
+          });
           _scrollToSection(key);
         },
         child: Text(
           title,
           style: GoogleFonts.plusJakartaSans(
-            color: Theme.of(context).colorScheme.secondary,
+            color: _clickedButtons[title]!
+                ? Theme.of(context).colorScheme.primary
+                : Theme.of(context).colorScheme.secondary,
             fontWeight: FontWeight.normal,
             fontSize: 12,
           ),

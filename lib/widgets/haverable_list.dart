@@ -15,7 +15,7 @@ class HoverableListItem extends StatefulWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                _buildListItem(context, 'HOME'),
+                _buildListItem(context, 'HOME',),
                 _buildListItem(context, 'ABOUT'),
                 _buildListItem(context, 'SERVICES'),
                 _buildListItem(context, 'WHY US'),
