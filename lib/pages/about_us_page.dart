@@ -108,18 +108,24 @@ class AboutUsPage extends StatelessWidget {
                     HoverButton(
                       text: 'CONTACT US',
                       onPressed: () {},
+                      shape: BoxShape.rectangle,
+                      isImageButton: false,
+                      image:'',
                     ),
-                   const SizedBox(height: 20),
+                    const SizedBox(height: 20),
                     HoverButton(
                       text: 'MESSAGE US',
                       onPressed: () {},
+                      shape: BoxShape.rectangle,
+                      isImageButton: true,
+                      image:'',
                     ),
                   ],
                 ),
                 space20,
                 SizedBox(
                   height: 600,
-                  width:600,
+                  width: 600,
                   child: Image.asset(
                     'assets/images/about_us_image.png',
                     fit: BoxFit.contain,
@@ -163,11 +169,17 @@ class AboutUsPage extends StatelessWidget {
                           HoverButton(
                             text: 'CONTACT US',
                             onPressed: () {},
+                            shape: BoxShape.rectangle,
+                            isImageButton: false,
+                            image:'',
                           ),
                           wspace20,
                           HoverButton(
                             text: 'MESSAGE US',
                             onPressed: () {},
+                            shape: BoxShape.rectangle
+                            ,isImageButton: false,
+                            image:'',
                           ),
                         ],
                       ),

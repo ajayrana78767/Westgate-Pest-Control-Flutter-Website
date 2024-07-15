@@ -182,6 +182,7 @@ class ContactUsPage extends StatelessWidget {
                     fit: BoxFit.cover)),
           ),
           space40,
+          
           // Row(
           //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           //   children: [

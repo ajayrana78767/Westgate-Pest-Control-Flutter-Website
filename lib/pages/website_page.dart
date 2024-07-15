@@ -830,6 +830,7 @@ import 'package:westgate_pest_control_website_/pages/home_page.dart';
 import 'package:westgate_pest_control_website_/pages/services_page.dart';
 import 'package:westgate_pest_control_website_/pages/why_us_page.dart';
 import 'package:westgate_pest_control_website_/utils/spacing_utils.dart';
+import 'package:westgate_pest_control_website_/widgets/hover_button.dart';
 
 class WebsitePage extends StatefulWidget {
   const WebsitePage({Key? key}) : super(key: key);
@@ -1481,6 +1482,63 @@ class _WebsitePageState extends State<WebsitePage> {
                               ),
                             ],
                           ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Container(
+                    height: 100,
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                        color: Theme.of(context).colorScheme.secondary),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Text(
+                          'Copyright © 2024 Westgatepestcontrol. All Rights Reserved.',
+                          style: TextStyle(
+                              color: Theme.of(context).colorScheme.onPrimary),
+                        ),
+                        Row(
+                          children: [
+                            HoverButton(
+                                text: 'Facebook',
+                                onPressed: () {},
+                                shape: BoxShape.circle,
+                                isImageButton: true,
+                                image: 'assets/images/facebook.svg'),
+                            wspace10,
+                            HoverButton(
+                              text: 'Location',
+                              onPressed: () {},
+                              shape: BoxShape.circle,
+                              isImageButton: true,
+                              image: 'assets/images/google_my_business.svg',
+                            ),
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            Text(
+                              'Designed BY',
+                              style: TextStyle(
+                                  color:
+                                      Theme.of(context).colorScheme.onPrimary),
+                            ),
+                            TextButton(
+                                onPressed: () {},
+                                child: Text('SSI',
+                                    style: TextStyle(
+                                      color:
+                                          Theme.of(context).colorScheme.primary,
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold,
+                                      decoration: TextDecoration.underline,
+                                      decorationColor: Theme.of(context)
+                                          .colorScheme
+                                          .onPrimary,
+                                    ))),
+                          ],
                         ),
                       ],
                     ),

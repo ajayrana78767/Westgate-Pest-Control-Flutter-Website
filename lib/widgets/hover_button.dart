@@ -1,11 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class HoverButton extends StatefulWidget {
   final String text;
   final VoidCallback onPressed;
+  final BoxShape shape;
+  final bool isImageButton;
+  final String? image;
 
-  const HoverButton({required this.text, required this.onPressed, Key? key})
-      : super(key: key);
+  const HoverButton({
+    required this.text,
+    required this.onPressed,
+    required this.shape,
+    required this.isImageButton,
+    required this.image,
+    Key? key,
+  }) : super(key: key);
 
   @override
   _HoverButtonState createState() => _HoverButtonState();
@@ -44,22 +54,32 @@ class _HoverButtonState extends State<HoverButton> {
                         .primary, // Border color when not hovered
                     width: .5, // Border width
                   ),
-            // boxShadow: _isHovered
-            //     ? [
-            //         BoxShadow(
-            //             color: Colors.blueAccent.withOpacity(0.25),
-            //             blurRadius: 10)
-            //       ]
-            //     : [],
+            shape: widget.shape,
           ),
-          child: Text(
-            widget.text,
-            style: TextStyle(
-                color: _isHovered
-                    ? Theme.of(context).colorScheme.onPrimary
-                    : Theme.of(context).colorScheme.primary,
-                fontSize: 16),
-          ),
+          child: widget.isImageButton
+              ? SizedBox(
+                  height: 35,
+                  width: 35,
+                  child: Padding(
+                    padding: const EdgeInsets.all(5.0),
+                    child: SvgPicture.asset(
+                      widget.image!,
+                      fit: BoxFit.contain,
+                      color: _isHovered
+                          ? Theme.of(context).colorScheme.onPrimary
+                          : Theme.of(context).colorScheme.primary,
+                    ),
+                  ),
+                )
+              : Text(
+                  widget.text,
+                  style: TextStyle(
+                    color: _isHovered
+                        ? Theme.of(context).colorScheme.onPrimary
+                        : Theme.of(context).colorScheme.primary,
+                    fontSize: 16,
+                  ),
+                ),
         ),
       ),
     );
