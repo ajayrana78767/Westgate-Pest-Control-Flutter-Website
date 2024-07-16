@@ -822,6 +822,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:westgate_pest_control_website_/pages/about_us_page.dart';
 import 'package:westgate_pest_control_website_/pages/contact_us_page.dart';
 import 'package:westgate_pest_control_website_/pages/faq_page.dart';
@@ -840,6 +841,13 @@ class WebsitePage extends StatefulWidget {
 }
 
 class _WebsitePageState extends State<WebsitePage> {
+  final Uri ssiWebsiteLink = Uri.parse('https://synergysoftindia.com/');
+  final Uri facebookLink = Uri.parse(
+      'https://www.facebook.com/people/Westgate-pest-control/61551553513602');
+
+  final Uri googleBusinessLink = Uri.parse(
+      'https://www.google.com/maps/place/WestGate+Pest+Control/@-36.0563102,147.6200657,7z/data=!3m1!4b1!4m6!3m5!1s0x6ad68ffa7fd75d7f:0x45626619588196f!8m2!3d-36.0563102!4d147.6200657!16s%2Fg%2F11l6kjm7bm?entry=ttu');
+
   final ScrollController _scrollController = ScrollController();
 
   // Define keys for each section
@@ -1300,7 +1308,7 @@ class _WebsitePageState extends State<WebsitePage> {
               key: contactKey,
               child: Column(
                 children: [
-                  const ContactUsPage(),
+                   ContactUsPage(),
                   Padding(
                     padding: const EdgeInsets.all(60.0),
                     child: Row(
@@ -1503,14 +1511,18 @@ class _WebsitePageState extends State<WebsitePage> {
                           children: [
                             HoverButton(
                                 text: 'Facebook',
-                                onPressed: () {},
+                                onPressed: () {
+                                  launchUrl(facebookLink);
+                                },
                                 shape: BoxShape.circle,
                                 isImageButton: true,
                                 image: 'assets/images/facebook.svg'),
                             wspace10,
                             HoverButton(
                               text: 'Location',
-                              onPressed: () {},
+                              onPressed: () {
+                                launchUrl(googleBusinessLink);
+                              },
                               shape: BoxShape.circle,
                               isImageButton: true,
                               image: 'assets/images/google_my_business.svg',
@@ -1526,7 +1538,9 @@ class _WebsitePageState extends State<WebsitePage> {
                                       Theme.of(context).colorScheme.onPrimary),
                             ),
                             TextButton(
-                                onPressed: () {},
+                                onPressed: () {
+                                  launchUrl(ssiWebsiteLink);
+                                },
                                 child: Text('SSI',
                                     style: TextStyle(
                                       color:

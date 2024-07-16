@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:westgate_pest_control_website_/utils/spacing_utils.dart';
 import 'package:westgate_pest_control_website_/widgets/custom_textfield.dart';
 
 class ContactUsPage extends StatelessWidget {
-  const ContactUsPage({super.key});
+  ContactUsPage({super.key});
+  final Uri whatsappLink = Uri.parse(
+      'https://api.whatsapp.com/send/?phone=61426040040&text&type=phone_number&app_absent=0');
 
   @override
   Widget build(BuildContext context) {
@@ -140,7 +143,9 @@ class ContactUsPage extends StatelessWidget {
                             BorderRadius.circular(30.0), // Border radius
                       ),
                       child: ListTile(
-                        onTap: () {},
+                        onTap: () {
+                          launchUrl(whatsappLink);
+                        },
                         leading: SizedBox(
                           height: 35,
                           width: 35,
@@ -182,7 +187,7 @@ class ContactUsPage extends StatelessWidget {
                     fit: BoxFit.cover)),
           ),
           space40,
-          
+
           // Row(
           //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           //   children: [
