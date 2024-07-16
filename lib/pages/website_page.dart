@@ -1308,7 +1308,7 @@ class _WebsitePageState extends State<WebsitePage> {
               key: contactKey,
               child: Column(
                 children: [
-                   ContactUsPage(),
+                  ContactUsPage(),
                   Padding(
                     padding: const EdgeInsets.all(60.0),
                     child: Row(
@@ -1495,68 +1495,247 @@ class _WebsitePageState extends State<WebsitePage> {
                     ),
                   ),
                   Container(
-                    height: 100,
+                    height:
+                        MediaQuery.of(context).size.width > 1000 ? 100 : 200,
                     width: double.infinity,
                     decoration: BoxDecoration(
-                        color: Theme.of(context).colorScheme.secondary),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        Text(
-                          'Copyright © 2024 Westgatepestcontrol. All Rights Reserved.',
-                          style: TextStyle(
-                              color: Theme.of(context).colorScheme.onPrimary),
-                        ),
-                        Row(
-                          children: [
-                            HoverButton(
-                                text: 'Facebook',
-                                onPressed: () {
-                                  launchUrl(facebookLink);
-                                },
-                                shape: BoxShape.circle,
-                                isImageButton: true,
-                                image: 'assets/images/facebook.svg'),
-                            wspace10,
-                            HoverButton(
-                              text: 'Location',
-                              onPressed: () {
-                                launchUrl(googleBusinessLink);
-                              },
-                              shape: BoxShape.circle,
-                              isImageButton: true,
-                              image: 'assets/images/google_my_business.svg',
-                            ),
-                          ],
-                        ),
-                        Row(
-                          children: [
-                            Text(
-                              'Designed BY',
-                              style: TextStyle(
-                                  color:
-                                      Theme.of(context).colorScheme.onPrimary),
-                            ),
-                            TextButton(
-                                onPressed: () {
-                                  launchUrl(ssiWebsiteLink);
-                                },
-                                child: Text('SSI',
+                      color: Theme.of(context).colorScheme.secondary,
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: LayoutBuilder(
+                        builder: (context, constraints) {
+                          if (constraints.maxWidth > 1000) {
+                            // Layout for larger screens
+                            return Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                Expanded(
+                                  child: Text(
+                                    'Copyright © 2024 Westgatepestcontrol. All Rights Reserved.',
                                     style: TextStyle(
-                                      color:
-                                          Theme.of(context).colorScheme.primary,
+                                      color: Theme.of(context)
+                                          .colorScheme
+                                          .onPrimary,
+                                    ),
+                                  ),
+                                ),
+                                Expanded(
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      HoverButton(
+                                        text: 'Facebook',
+                                        onPressed: () {
+                                          launchUrl(facebookLink);
+                                        },
+                                        shape: BoxShape.circle,
+                                        isImageButton: true,
+                                        image: 'assets/images/facebook.svg',
+                                      ),
+                                      SizedBox(width: 10),
+                                      HoverButton(
+                                        text: 'Location',
+                                        onPressed: () {
+                                          launchUrl(googleBusinessLink);
+                                        },
+                                        shape: BoxShape.circle,
+                                        isImageButton: true,
+                                        image:
+                                            'assets/images/google_my_business.svg',
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                Expanded(
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.end,
+                                    children: [
+                                      Text(
+                                        'Designed BY',
+                                        style: TextStyle(
+                                          color: Theme.of(context)
+                                              .colorScheme
+                                              .onPrimary,
+                                        ),
+                                      ),
+                                      TextButton(
+                                        onPressed: () {
+                                          launchUrl(ssiWebsiteLink);
+                                        },
+                                        child: Text(
+                                          'SSI',
+                                          style: TextStyle(
+                                            color: Theme.of(context)
+                                                .colorScheme
+                                                .primary,
+                                            fontSize: 20,
+                                            fontWeight: FontWeight.bold,
+                                            decoration:
+                                                TextDecoration.underline,
+                                            decorationColor: Theme.of(context)
+                                                .colorScheme
+                                                .onPrimary,
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            );
+                          } else {
+                            // Layout for smaller screens
+                            return Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  'Copyright © 2024 Westgatepestcontrol. All Rights Reserved.',
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                    color: Theme.of(context)
+                                        .colorScheme
+                                        .onPrimary,
+                                  ),
+                                ),
+                                space10,
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    HoverButton(
+                                      text: 'Facebook',
+                                      onPressed: () {
+                                        launchUrl(facebookLink);
+                                      },
+                                      shape: BoxShape.circle,
+                                      isImageButton: true,
+                                      image: 'assets/images/facebook.svg',
+                                    ),
+                                    SizedBox(width: 10),
+                                    HoverButton(
+                                      text: 'Location',
+                                      onPressed: () {
+                                        launchUrl(googleBusinessLink);
+                                      },
+                                      shape: BoxShape.circle,
+                                      isImageButton: true,
+                                      image:
+                                          'assets/images/google_my_business.svg',
+                                    ),
+                                  ],
+                                ),
+                                space10,
+                                Text(
+                                  'Designed BY',
+                                  style: TextStyle(
+                                    color: Theme.of(context)
+                                        .colorScheme
+                                        .onPrimary,
+                                  ),
+                                ),
+
+                                TextButton(
+                                  onPressed: () {
+                                    launchUrl(ssiWebsiteLink);
+                                  },
+                                  child: Text(
+                                    'SSI',
+                                    style: TextStyle(
+                                      color: Theme.of(context)
+                                          .colorScheme
+                                          .primary,
                                       fontSize: 20,
                                       fontWeight: FontWeight.bold,
                                       decoration: TextDecoration.underline,
                                       decorationColor: Theme.of(context)
                                           .colorScheme
                                           .onPrimary,
-                                    ))),
-                          ],
-                        ),
-                      ],
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            );
+                          }
+                        },
+                      ),
                     ),
                   ),
+
+                  // Container(
+                  //   height: 100,
+                  //   width: double.infinity,
+                  //   decoration: BoxDecoration(
+                  //       color: Theme.of(context).colorScheme.secondary),
+                  //   child: Padding(
+                  //     padding: const EdgeInsets.all(8.0),
+                  //     child: Row(
+                  //       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  //       children: [
+                  //         Expanded(
+                  //           child: Text(
+                  //             'Copyright © 2024 Westgatepestcontrol. All Rights Reserved.',
+                  //             style: TextStyle(
+                  //                 color: Theme.of(context).colorScheme.onPrimary),
+                  //           ),
+                  //         ),
+                  //         Expanded(
+                  //           child: Row(
+                  //             children: [
+                  //               HoverButton(
+                  //                   text: 'Facebook',
+                  //                   onPressed: () {
+                  //                     launchUrl(facebookLink);
+                  //                   },
+                  //                   shape: BoxShape.circle,
+                  //                   isImageButton: true,
+                  //                   image: 'assets/images/facebook.svg'),
+                  //               wspace10,
+                  //               HoverButton(
+                  //                 text: 'Location',
+                  //                 onPressed: () {
+                  //                   launchUrl(googleBusinessLink);
+                  //                 },
+                  //                 shape: BoxShape.circle,
+                  //                 isImageButton: true,
+                  //                 image: 'assets/images/google_my_business.svg',
+                  //               ),
+                  //             ],
+                  //           ),
+                  //         ),
+                  //         Align(
+                  //           alignment: Alignment.centerRight,
+                  //           child: Expanded(
+                  //             child: Row(
+                  //               children: [
+                  //                 Text(
+                  //                   'Designed BY',
+                  //                   style: TextStyle(
+                  //                       color:
+                  //                           Theme.of(context).colorScheme.onPrimary),
+                  //                 ),
+                  //                 TextButton(
+                  //                     onPressed: () {
+                  //                       launchUrl(ssiWebsiteLink);
+                  //                     },
+                  //                     child: Text('SSI',
+                  //                         style: TextStyle(
+                  //                           color:
+                  //                               Theme.of(context).colorScheme.primary,
+                  //                           fontSize: 20,
+                  //                           fontWeight: FontWeight.bold,
+                  //                           decoration: TextDecoration.underline,
+                  //                           decorationColor: Theme.of(context)
+                  //                               .colorScheme
+                  //                               .onPrimary,
+                  //                         ))),
+                  //               ],
+                  //             ),
+                  //           ),
+                  //         ),
+                  //       ],
+                  //     ),
+                  //   ),
+                  // ),
                 ],
               )),
         ],
