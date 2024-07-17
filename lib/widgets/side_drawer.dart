@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:westgate_pest_control_website_/utils/spacing_utils.dart';
 
 class SideDrawer extends StatelessWidget {
   final Function(String) onItemTap;

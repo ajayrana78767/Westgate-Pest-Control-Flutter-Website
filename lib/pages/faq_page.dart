@@ -38,6 +38,8 @@
 //                     ),
 //                   ),
 
+// ignore_for_file: unused_local_variable, use_super_parameters
+
 //                   Padding(
 //                     padding: const EdgeInsets.all(20.0),
 //                     child: Row(

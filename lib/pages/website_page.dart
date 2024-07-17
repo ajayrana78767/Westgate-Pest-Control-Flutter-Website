@@ -793,6 +793,8 @@
 //     );
 //   }
 
+// ignore_for_file: library_private_types_in_public_api
+
 //   Widget _buildNavButton(String title, GlobalKey key, bool isClicked) {
 //     return Padding(
 //       padding: const EdgeInsets.symmetric(horizontal: 10),
@@ -834,7 +836,7 @@ import 'package:westgate_pest_control_website_/utils/spacing_utils.dart';
 import 'package:westgate_pest_control_website_/widgets/hover_button.dart';
 
 class WebsitePage extends StatefulWidget {
-  const WebsitePage({Key? key}) : super(key: key);
+  const WebsitePage({super.key});
 
   @override
   State<WebsitePage> createState() => _WebsitePageState();
@@ -977,9 +979,6 @@ class _WebsitePageState extends State<WebsitePage> {
 
   @override
   Widget build(BuildContext context) {
-    double expandedHeight =
-        MediaQuery.of(context).size.width < 600 ? 70.0 : 120.0;
-    double logoSize = MediaQuery.of(context).size.width < 600 ? 60.0 : 120.0;
     return Scaffold(
       body: CustomScrollView(
         controller: _scrollController,
@@ -1308,7 +1307,7 @@ class _WebsitePageState extends State<WebsitePage> {
               key: contactKey,
               child: Column(
                 children: [
-                  ContactUsPage(),
+                  const ContactUsPage(),
                   Padding(
                     padding: const EdgeInsets.all(60.0),
                     child: Row(
@@ -1746,11 +1745,11 @@ class NavBarItem extends StatelessWidget {
   final VoidCallback onTap;
 
   const NavBarItem({
-    Key? key,
+    super.key,
     required this.text,
     required this.isClicked,
     required this.onTap,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -1777,9 +1776,9 @@ class HoverableListItem extends StatefulWidget {
   final String title;
 
   const HoverableListItem({
-    Key? key,
+    super.key,
     required this.title,
-  }) : super(key: key);
+  });
 
   @override
   _HoverableListItemState createState() => _HoverableListItemState();
