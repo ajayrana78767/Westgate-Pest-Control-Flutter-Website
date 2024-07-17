@@ -4,16 +4,23 @@ class CustomTextfield extends StatelessWidget {
   final String hintText;
   final int minLines;
   final int maxLines;
+  final TextEditingController controller;
+  final String? Function(String?)? validator; // Optional validator
+
   const CustomTextfield(
       {super.key,
       required this.hintText,
       required this.minLines,
-      required this.maxLines});
+      required this.maxLines,
+      required this.controller,
+      this.validator});
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      child: TextField(
+      child: TextFormField(
+        validator: validator,
+        controller: controller,
         maxLines: maxLines,
         minLines: minLines,
         decoration: InputDecoration(

@@ -1533,7 +1533,7 @@ class _WebsitePageState extends State<WebsitePage> {
                                         isImageButton: true,
                                         image: 'assets/images/facebook.svg',
                                       ),
-                                      SizedBox(width: 10),
+                                      const SizedBox(width: 10),
                                       HoverButton(
                                         text: 'Location',
                                         onPressed: () {
@@ -1593,9 +1593,8 @@ class _WebsitePageState extends State<WebsitePage> {
                                   'Copyright © 2024 Westgatepestcontrol. All Rights Reserved.',
                                   textAlign: TextAlign.center,
                                   style: TextStyle(
-                                    color: Theme.of(context)
-                                        .colorScheme
-                                        .onPrimary,
+                                    color:
+                                        Theme.of(context).colorScheme.onPrimary,
                                   ),
                                 ),
                                 space10,
@@ -1611,7 +1610,7 @@ class _WebsitePageState extends State<WebsitePage> {
                                       isImageButton: true,
                                       image: 'assets/images/facebook.svg',
                                     ),
-                                    SizedBox(width: 10),
+                                    const SizedBox(width: 10),
                                     HoverButton(
                                       text: 'Location',
                                       onPressed: () {
@@ -1628,12 +1627,10 @@ class _WebsitePageState extends State<WebsitePage> {
                                 Text(
                                   'Designed BY',
                                   style: TextStyle(
-                                    color: Theme.of(context)
-                                        .colorScheme
-                                        .onPrimary,
+                                    color:
+                                        Theme.of(context).colorScheme.onPrimary,
                                   ),
                                 ),
-
                                 TextButton(
                                   onPressed: () {
                                     launchUrl(ssiWebsiteLink);
@@ -1641,9 +1638,8 @@ class _WebsitePageState extends State<WebsitePage> {
                                   child: Text(
                                     'SSI',
                                     style: TextStyle(
-                                      color: Theme.of(context)
-                                          .colorScheme
-                                          .primary,
+                                      color:
+                                          Theme.of(context).colorScheme.primary,
                                       fontSize: 20,
                                       fontWeight: FontWeight.bold,
                                       decoration: TextDecoration.underline,
