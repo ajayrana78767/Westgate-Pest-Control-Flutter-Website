@@ -1,10 +1,14 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:westgate_pest_control_website_/firebase_options.dart';
 import 'package:westgate_pest_control_website_/pages/website_page.dart';
 import 'package:westgate_pest_control_website_/themes/light_mode.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+
   // Initialize shared preferences for all platforms
   await SharedPreferences.getInstance();
   runApp(const MyApp());

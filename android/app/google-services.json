@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "914650984803",
+    "project_id": "westgate-pest-control",
+    "storage_bucket": "westgate-pest-control.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:914650984803:android:f2d935fb173ca07d40e356",
+        "android_client_info": {
+          "package_name": "com.example.westgate_pest_control_website_"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDo3_I9nnzQECHDbb1jlCclLSZbzmmZqhM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
