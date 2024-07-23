@@ -825,6 +825,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:url_launcher/url_launcher.dart';
+// import 'package:westgate_pest_control_website_/models/service_model.dart';
 import 'package:westgate_pest_control_website_/pages/about_us_page.dart';
 import 'package:westgate_pest_control_website_/pages/contact_us_page.dart';
 import 'package:westgate_pest_control_website_/pages/faq_page.dart';
@@ -1294,7 +1295,7 @@ class _WebsitePageState extends State<WebsitePage> {
           // Services section
           SliverToBoxAdapter(
             key: servicesKey,
-            child: ServicesPage(),
+            child:  ServicesPage(),
           ),
           // Why Us section
           SliverToBoxAdapter(key: whyUsKey, child: WhyUsPage()),
