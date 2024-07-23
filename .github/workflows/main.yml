@@ -34,6 +34,6 @@ run: flutter build web
 uses: FirebaseExtended/action-hosting-deploy@v0
 with:
 repoToken: '${{ secrets.GITHUB_TOKEN }}'
-firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT }}'
+FIREBASE_TOKEN: '${{ secrets.FIREBASE_TOKEN }}'
 channelId: live  # Change this if you are using a different channel
 projectId: westgate-pest-control  # Replace with your Firebase project ID
