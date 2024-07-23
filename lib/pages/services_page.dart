@@ -220,14 +220,16 @@ import 'dart:typed_data';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:shimmer/shimmer.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
 class ServicesPage extends StatelessWidget {
   ServicesPage({super.key});
   final List<String> defaultImages = [
-    'assets/images/residential.png',
-    'assets/images/commercial.png',
-    'assets/images/termite.png'
+    // 'assets/images/residential.png',
+    // 'assets/images/commercial.png',
+    // 'assets/images/termite.png'
   ];
 
   Stream<List<QueryDocumentSnapshot>> fetchServices() {
@@ -237,6 +239,23 @@ class ServicesPage extends StatelessWidget {
         .map((snapshot) => snapshot.docs);
   }
 
+  // Future<Uint8List?> getImageBytes(String imageUrl) async {
+  //   try {
+  //     if (imageUrl.startsWith('https://') || imageUrl.startsWith('gs://')) {
+  //       final FirebaseStorage firebaseStorage = FirebaseStorage.instance;
+  //       Uint8List? imageBytes = await firebaseStorage
+  //           .refFromURL(imageUrl)
+  //           .getData(10000000); // Adjust size limit if needed
+  //       return imageBytes;
+  //     } else {
+  //       print('Invalid URL: $imageUrl');
+  //       return null;
+  //     }
+  //   } catch (e) {
+  //     print('Error fetching image: $e');
+  //     return null;
+  //   }
+  // }
   Future<Uint8List?> getImageBytes(String imageUrl) async {
     try {
       if (imageUrl.startsWith('https://') || imageUrl.startsWith('gs://')) {
@@ -245,8 +264,13 @@ class ServicesPage extends StatelessWidget {
             .refFromURL(imageUrl)
             .getData(10000000); // Adjust size limit if needed
         return imageBytes;
+      } else if (imageUrl.startsWith('assets/')) {
+        // Handle local asset images
+        ByteData byteData = await rootBundle.load(imageUrl);
+        Uint8List imageBytes = byteData.buffer.asUint8List();
+        return imageBytes;
       } else {
-        print('Invalid URL: $imageUrl');
+        // print('Invalid URL: $imageUrl');
         return null;
       }
     } catch (e) {
@@ -331,8 +355,8 @@ class ServicesPage extends StatelessWidget {
                   final doc = documents[index];
                   final data = doc.data() as Map<String, dynamic>;
 
-                  final imageUrl =
-                      data['imageUrl'] as String? ?? defaultImages[index];
+                  final imageUrl = data['image Url'] as String? ??
+                      'assets/images/picture.png';
                   final title = data['title'] as String? ?? 'No Title';
                   final description =
                       data['description'] as String? ?? 'No Description';
@@ -368,17 +392,49 @@ class ServicesPage extends StatelessWidget {
                         children: [
                           Container(
                             margin: const EdgeInsets.all(30),
-                            decoration: BoxDecoration(
-                              borderRadius:
-                                  const BorderRadius.all(Radius.circular(16)),
-                              image: DecorationImage(
-                                image: imageSnapshot.hasData
-                                    ? MemoryImage(imageSnapshot.data!)
-                                    : AssetImage(imageUrl) as ImageProvider,
+                            // decoration: BoxDecoration(
+                            //   borderRadius:
+                            //       const BorderRadius.all(Radius.circular(16)),
+                            //   image: DecorationImage(
+                            //     image: imageSnapshot.hasData
+                            //         ? MemoryImage(imageSnapshot.data!)
+                            //         : imageUrl.startsWith('assets/')
+                            //             ? AssetImage(imageUrl) as ImageProvider
+                            //             : CachedNetworkImageProvider(
+                            //                 imageUrl,
+                            //               ),
+                            //     fit: BoxFit.cover,
+                            //   ),
+                            // ),
+                            child: Container(
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(16),
+                              ),
+                              child: CachedNetworkImage(
+                                
+                                imageUrl: imageUrl,
+                                placeholder: (context, url) => const Center(
+                                    child: CircularProgressIndicator()),
+                                errorWidget: (context, url, error) =>
+                                    const Icon(Icons.error),
                                 fit: BoxFit.cover,
                               ),
                             ),
                           ),
+
+                          // Container(
+                          //   margin: const EdgeInsets.all(30),
+                          //   decoration: BoxDecoration(
+                          //     borderRadius:
+                          //         const BorderRadius.all(Radius.circular(16)),
+                          //     image: DecorationImage(
+                          //       image: imageSnapshot.hasData
+                          //           ? MemoryImage(imageSnapshot.data!)
+                          //           : AssetImage(imageUrl) as ImageProvider,
+                          //       fit: BoxFit.cover,
+                          //     ),
+                          //   ),
+                          // ),
                           Positioned(
                             bottom: -200,
                             left: 0,
