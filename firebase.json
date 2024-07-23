@@ -1,1 +1,33 @@
-{"flutter":{"platforms":{"android":{"default":{"projectId":"westgate-pest-control","appId":"1:914650984803:android:f2d935fb173ca07d40e356","fileOutput":"android/app/google-services.json"}},"dart":{"lib/firebase_options.dart":{"projectId":"westgate-pest-control","configurations":{"android":"1:914650984803:android:f2d935fb173ca07d40e356","ios":"1:914650984803:ios:b4206d1d300bc24e40e356","macos":"1:914650984803:ios:b4206d1d300bc24e40e356","web":"1:914650984803:web:0ff1753e281ee5b840e356","windows":"1:914650984803:web:01b46ca9f8644c6d40e356"}}}}}}
+{
+  "flutter": {
+    "platforms": {
+      "android": {
+        "default": {
+          "projectId": "westgate-pest-control",
+          "appId": "1:914650984803:android:f2d935fb173ca07d40e356",
+          "fileOutput": "android/app/google-services.json"
+        }
+      },
+      "dart": {
+        "lib/firebase_options.dart": {
+          "projectId": "westgate-pest-control",
+          "configurations": {
+            "android": "1:914650984803:android:f2d935fb173ca07d40e356",
+            "ios": "1:914650984803:ios:b4206d1d300bc24e40e356",
+            "macos": "1:914650984803:ios:b4206d1d300bc24e40e356",
+            "web": "1:914650984803:web:0ff1753e281ee5b840e356",
+            "windows": "1:914650984803:web:01b46ca9f8644c6d40e356"
+          }
+        }
+      }
+    }
+  },
+  "hosting": {
+    "public": "build/web",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ]
+  }
+}
