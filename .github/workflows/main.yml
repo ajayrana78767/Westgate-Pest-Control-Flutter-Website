@@ -1,0 +1,39 @@
+name: Deploy Flutter Web App to Firebase Hosting
+
+on:
+push:
+branches:
+•  main  # Change this to your default branch if it's not 'main'
+
+
+jobs:
+build:
+runs-on: ubuntu-latest
+
+steps:
+•  name: Checkout repository
+
+uses: actions/checkout@v2
+
+•  name: Set up Flutter
+
+uses: subosito/flutter-action@v2
+with:
+flutter-version: '3.22.2'  # Specify the Flutter version you are using
+
+•  name: Install dependencies
+
+run: flutter pub get
+
+•  name: Build Flutter web app
+
+run: flutter build web
+
+•  name: Deploy to Firebase Hosting
+
+uses: FirebaseExtended/action-hosting-deploy@v0
+with:
+repoToken: '${{ secrets.GITHUB_TOKEN }}'
+firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT }}'
+channelId: live  # Change this if you are using a different channel
+projectId: westgate-pest-control  # Replace with your Firebase project ID
