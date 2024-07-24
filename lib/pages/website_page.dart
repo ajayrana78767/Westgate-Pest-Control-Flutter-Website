@@ -1125,7 +1125,7 @@ class _WebsitePageState extends State<WebsitePage> {
                           ),
                         ),
                       ),
-                      if (MediaQuery.of(context).size.width < 1500)
+                      if (MediaQuery.of(context).size.width < 1400)
                         InkWell(
                           onTap: () {
                             _openCustomDrawer(context);
