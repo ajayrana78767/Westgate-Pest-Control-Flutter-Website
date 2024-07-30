@@ -793,7 +793,7 @@
 //     );
 //   }
 
-// ignore_for_file: library_private_types_in_public_api
+// ignore_for_file: library_private_types_in_public_api, unused_field
 
 //   Widget _buildNavButton(String title, GlobalKey key, bool isClicked) {
 //     return Padding(
@@ -853,14 +853,23 @@ class _WebsitePageState extends State<WebsitePage> {
 
   final ScrollController _scrollController = ScrollController();
 
-  // Define keys for each section
-  final GlobalKey homeKey = GlobalKey();
-  final GlobalKey aboutKey = GlobalKey();
-  final GlobalKey servicesKey = GlobalKey();
-  final GlobalKey whyUsKey = GlobalKey();
-  final GlobalKey galleryKey = GlobalKey();
-  final GlobalKey faqKey = GlobalKey();
-  final GlobalKey contactKey = GlobalKey();
+  // // Define keys for each section
+  // final GlobalKey homeKey = GlobalKey();
+  // final GlobalKey aboutKey = GlobalKey();
+  // final GlobalKey servicesKey = GlobalKey();
+  // final GlobalKey whyUsKey = GlobalKey();
+  // final GlobalKey galleryKey = GlobalKey();
+  // final GlobalKey faqKey = GlobalKey();
+  // final GlobalKey contactKey = GlobalKey();
+   // Define unique keys for each section
+  final GlobalKey _homeKey = GlobalKey();
+  final GlobalKey _aboutKey = GlobalKey();
+  final GlobalKey _servicesKey = GlobalKey();
+  final GlobalKey _whyUsKey = GlobalKey();
+  final GlobalKey _galleryKey = GlobalKey();
+  final GlobalKey _faqKey = GlobalKey();
+  final GlobalKey _contactKey = GlobalKey();
+
 
   // Map to keep track of which button is clicked
   final Map<String, bool> _clickedButtons = {
@@ -892,19 +901,19 @@ class _WebsitePageState extends State<WebsitePage> {
 
     setState(() {
       _clickedButtons.updateAll((key, value) => false);
-      if (_isInView(homeKey, scrollPosition, contextHeight)) {
+      if (_isInView(_homeKey, scrollPosition, contextHeight)) {
         _clickedButtons['HOME'] = true;
-      } else if (_isInView(aboutKey, scrollPosition, contextHeight)) {
+      } else if (_isInView(_aboutKey, scrollPosition, contextHeight)) {
         _clickedButtons['ABOUT'] = true;
-      } else if (_isInView(servicesKey, scrollPosition, contextHeight)) {
+      } else if (_isInView(_servicesKey, scrollPosition, contextHeight)) {
         _clickedButtons['SERVICES'] = true;
-      } else if (_isInView(whyUsKey, scrollPosition, contextHeight)) {
+      } else if (_isInView(_whyUsKey, scrollPosition, contextHeight)) {
         _clickedButtons['WHY US'] = true;
-      } else if (_isInView(galleryKey, scrollPosition, contextHeight)) {
+      } else if (_isInView(_galleryKey, scrollPosition, contextHeight)) {
         _clickedButtons['GALLERY'] = true;
-      } else if (_isInView(faqKey, scrollPosition, contextHeight)) {
+      } else if (_isInView(_faqKey, scrollPosition, contextHeight)) {
         _clickedButtons['FAQ'] = true;
-      } else if (_isInView(contactKey, scrollPosition, contextHeight)) {
+      } else if (_isInView(_contactKey, scrollPosition, contextHeight)) {
         _clickedButtons['CONTACT'] = true;
       }
     });
@@ -950,13 +959,13 @@ class _WebsitePageState extends State<WebsitePage> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                _buildListItem(context, 'HOME', homeKey),
-                _buildListItem(context, 'ABOUT', aboutKey),
-                _buildListItem(context, 'SERVICES', servicesKey),
-                _buildListItem(context, 'WHY US', whyUsKey),
-                _buildListItem(context, 'GALLERY', galleryKey),
-                _buildListItem(context, 'FAQ', faqKey),
-                _buildListItem(context, 'CONTACT', contactKey),
+                _buildListItem(context, 'HOME', _homeKey),
+                _buildListItem(context, 'ABOUT', _aboutKey),
+                _buildListItem(context, 'SERVICES', _servicesKey),
+                _buildListItem(context, 'WHY US', _whyUsKey),
+                _buildListItem(context, 'GALLERY', _galleryKey),
+                _buildListItem(context, 'FAQ', _faqKey),
+                _buildListItem(context, 'CONTACT', _contactKey),
               ],
             ),
           ),
@@ -1125,7 +1134,7 @@ class _WebsitePageState extends State<WebsitePage> {
                           ),
                         ),
                       ),
-                      if (MediaQuery.of(context).size.width < 1400)
+                      if (MediaQuery.of(context).size.width < 1350)
                         InkWell(
                           onTap: () {
                             _openCustomDrawer(context);
@@ -1152,37 +1161,37 @@ class _WebsitePageState extends State<WebsitePage> {
                             NavBarItem(
                               text: 'HOME',
                               isClicked: _clickedButtons['HOME'] ?? false,
-                              onTap: () => _scrollToSection(homeKey),
+                              onTap: () => _scrollToSection(_homeKey),
                             ),
                             NavBarItem(
                               text: 'ABOUT',
                               isClicked: _clickedButtons['ABOUT'] ?? false,
-                              onTap: () => _scrollToSection(aboutKey),
+                              onTap: () => _scrollToSection(_aboutKey),
                             ),
                             NavBarItem(
                               text: 'SERVICES',
                               isClicked: _clickedButtons['SERVICES'] ?? false,
-                              onTap: () => _scrollToSection(servicesKey),
+                              onTap: () => _scrollToSection(_servicesKey),
                             ),
                             NavBarItem(
                               text: 'WHY US',
                               isClicked: _clickedButtons['WHY US'] ?? false,
-                              onTap: () => _scrollToSection(whyUsKey),
+                              onTap: () => _scrollToSection(_whyUsKey),
                             ),
                             NavBarItem(
                               text: 'GALLERY',
                               isClicked: _clickedButtons['GALLERY'] ?? false,
-                              onTap: () => _scrollToSection(galleryKey),
+                              onTap: () => _scrollToSection(_galleryKey),
                             ),
                             NavBarItem(
                               text: 'FAQ',
                               isClicked: _clickedButtons['FAQ'] ?? false,
-                              onTap: () => _scrollToSection(faqKey),
+                              onTap: () => _scrollToSection(_faqKey),
                             ),
                             NavBarItem(
                               text: 'CONTACT',
                               isClicked: _clickedButtons['CONTACT'] ?? false,
-                              onTap: () => _scrollToSection(contactKey),
+                              onTap: () => _scrollToSection(_contactKey),
                             ),
                           ],
                         ),
@@ -1284,28 +1293,50 @@ class _WebsitePageState extends State<WebsitePage> {
           // ),
           // Home section
           SliverToBoxAdapter(
-            key: homeKey,
-            child: const HomePage(),
+           // key: homeKey,
+            child: Column(
+              children:  [
+                Form(
+                  key: _homeKey,
+                  child: const HomePage()),
+                Form(
+                  key: _aboutKey,
+                  child: const AboutUsPage()),
+                Form(
+                  key: _servicesKey,
+                  child: ServicesPage()),
+                Form(
+                  key: _whyUsKey,
+                  child: WhyUsPage()),
+                Form(
+                  key: _galleryKey,
+                  child: GalleryPage()),
+                 Form(
+                  key: _faqKey,
+                  child: const FaqPage()),
+
+              ],
+            ),
           ),
           // About section
-          SliverToBoxAdapter(
-            key: aboutKey,
-            child: const AboutUsPage(),
-          ),
-          // Services section
-          SliverToBoxAdapter(
-            key: servicesKey,
-            child:  ServicesPage(),
-          ),
-          // Why Us section
-          SliverToBoxAdapter(key: whyUsKey, child: WhyUsPage()),
-          // Gallery section
-          SliverToBoxAdapter(key: galleryKey, child: GalleryPage()),
-          // FAQ section
-          SliverToBoxAdapter(key: faqKey, child: const FaqPage()),
+          // SliverToBoxAdapter(
+          //   key: aboutKey,
+          //   child: const AboutUsPage(),
+          // ),
+          // // Services section
+          // SliverToBoxAdapter(
+          //   key: servicesKey,
+          //   child:  ServicesPage(),
+          // ),
+          // // Why Us section
+          // SliverToBoxAdapter(key: whyUsKey, child: WhyUsPage()),
+          // // Gallery section
+          // SliverToBoxAdapter(key: galleryKey, child: GalleryPage()),
+          // // FAQ section
+          // SliverToBoxAdapter(key: faqKey, child: const FaqPage()),
           // Contact section
           SliverToBoxAdapter(
-              key: contactKey,
+             // key: contactKey,
               child: Column(
                 children: [
                   const ContactUsPage(),
@@ -1394,7 +1425,7 @@ class _WebsitePageState extends State<WebsitePage> {
                               space10,
                               TextButton(
                                   onPressed: () {
-                                    _scrollToSection(homeKey);
+                                    _scrollToSection(_homeKey);
                                   },
                                   child: Text('Home',
                                       style: TextStyle(
@@ -1404,7 +1435,7 @@ class _WebsitePageState extends State<WebsitePage> {
                                       ))),
                               TextButton(
                                   onPressed: () {
-                                    _scrollToSection(aboutKey);
+                                    _scrollToSection(_aboutKey);
                                   },
                                   child: Text('About',
                                       style: TextStyle(
@@ -1414,7 +1445,7 @@ class _WebsitePageState extends State<WebsitePage> {
                                       ))),
                               TextButton(
                                   onPressed: () {
-                                    _scrollToSection(servicesKey);
+                                    _scrollToSection(_servicesKey);
                                   },
                                   child: Text('Services',
                                       style: TextStyle(
@@ -1424,7 +1455,7 @@ class _WebsitePageState extends State<WebsitePage> {
                                       ))),
                               TextButton(
                                   onPressed: () {
-                                    _scrollToSection(whyUsKey);
+                                    _scrollToSection(_whyUsKey);
                                   },
                                   child: Text('Why Us',
                                       style: TextStyle(
@@ -1434,7 +1465,7 @@ class _WebsitePageState extends State<WebsitePage> {
                                       ))),
                               TextButton(
                                   onPressed: () {
-                                    _scrollToSection(faqKey);
+                                    _scrollToSection(_faqKey);
                                   },
                                   child: Text('Faq',
                                       style: TextStyle(
@@ -1444,7 +1475,7 @@ class _WebsitePageState extends State<WebsitePage> {
                                       ))),
                               TextButton(
                                   onPressed: () {
-                                    _scrollToSection(contactKey);
+                                    _scrollToSection(_contactKey);
                                   },
                                   child: Text('Contact',
                                       style: TextStyle(
